@@ -13,6 +13,10 @@ public class CalculatorController {
     public CalculatorController(CalculatorService calculatorService) {
         this.calculatorService = calculatorService;
     }
+    @GetMapping("/")
+    public String welcome(){
+        return "Добро пожаловать в калькулятор";
+    }
     @GetMapping ("/plus")
     public String sumNumbers(@RequestParam int num1, @RequestParam int num2) {
         return String.valueOf(calculatorService.plus(num1, num2));
@@ -27,9 +31,6 @@ public class CalculatorController {
     }
     @GetMapping ("/divide")
     public String divisionNumbers(@RequestParam int num1, @RequestParam int num2) {
-        if (num2 == 0) {
-            return "No division by zero";
-        }
         return String.valueOf(calculatorService.divide(num1, num2));
     }
 }
